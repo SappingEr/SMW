@@ -25,7 +25,12 @@ namespace SaveMyWord.Models.Repositories
                 if (!string.IsNullOrEmpty(filter.UserName))
                 {
                     crit.Add(Restrictions.Eq("UserName", filter.UserName));
-                }                
+                }
+
+                if (!string.IsNullOrEmpty(filter.Email))
+                {
+                    crit.Add(Restrictions.Like("Email", filter.Email, MatchMode.Anywhere));
+                }
 
                 if (filter.Date != null)
                 {

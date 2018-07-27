@@ -207,7 +207,6 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\NoteController.cs" />
     <Compile Include="Models\EntityViewModel.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -420,9 +419,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\User.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
@@ -434,6 +430,11 @@
     <Content Include="Views\Note\Index.cshtml" />
     <Content Include="Scripts\tinymce\tiny.config.js" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Note\Start.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Account\Info.cshtml" />
+    <Content Include="Views\Account\Create.cshtml" />
+    <Content Include="Views\Admin\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="fonts\font\" />

@@ -18,6 +18,15 @@ namespace SaveMyWord.Controllers
             this.noteRepository = noteRepository;
         }
 
+        [AllowAnonymous]
+        public ActionResult Start()
+        {
+            return View();
+        }
+
+
+
+
         public ActionResult Index()
         {
             var note = noteRepository.FindAll();

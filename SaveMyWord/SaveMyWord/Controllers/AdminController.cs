@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace SaveMyWord.Controllers
 {
-    //[Authorize(Users = "Admin")]
+    [Authorize(Users = "Admin")]
     public class AdminController : BaseController
     {
         public AdminController(UserRepository userRepository) :
@@ -24,6 +24,8 @@ namespace SaveMyWord.Controllers
             var users = userRepository.Find(userFilter, options);
             return View(users);
         }
+
+
         
         public ActionResult Delete(long Id)
         {
@@ -55,6 +57,26 @@ namespace SaveMyWord.Controllers
                 userRepository.Save(user);
             });
             return RedirectToBackUrl();
+        }
+
+        public ActionResult Create()
+        {
+            var model = new UserViewModel { Entity = new User() };
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Create(UserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var res = UserManager.CreateAsync(model.Entity, model.Password);
+                if (res.Result == IdentityResult.Success)
+                {
+                    return RedirectToAction("Login");
+                }
+            }
+            return RedirectToAction("Login");
         }
 
         public ActionResult Info(long id)

@@ -11,10 +11,16 @@ namespace SaveMyWord.Models
         public virtual long Id { get; set; }
 
         [Display(Name = "Имя")]
+        [Required]
         [InFastSearch]
         public virtual string UserName { get; set; }
 
-        public virtual string Password { get; set; }       
+        
+        public virtual string Password { get; set; }
+
+        [InFastSearch]
+        [EmailAddress]
+        public virtual string Email { get; set; }
 
         [Display(Name = "Дата авторизации")]
         [CreationDate]

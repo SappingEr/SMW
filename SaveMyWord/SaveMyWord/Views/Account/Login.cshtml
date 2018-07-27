@@ -1,15 +1,17 @@
 ﻿@model SaveMyWord.Models.LoginViewModel
 
 @{
-    ViewBag.Title = "SMW";
+                /**/
+
+                ViewBag.Title = "SMW";
 }
 
 <h2>SaveMyWord</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Авторизуйтесь перед началом работы</h4>
         <hr />
@@ -39,5 +41,9 @@
 }
 
 <div>
-    @Html.ActionLink("Зарегистрируйтесь", "Index", "Note"), если у вас нет учетной записи
+    @Html.ActionLink("Зарегистрируйтесь", "Create", "Account"), если у вас нет учетной записи
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -97,7 +97,7 @@ namespace SaveMyWord.App_Start
                 builder.RegisterType(type);
             }
 
-            builder.RegisterControllers(Assembly.GetAssembly(typeof(HomeController)));
+            builder.RegisterControllers(Assembly.GetAssembly(typeof(NoteController)));
             builder.RegisterModule(new AutofacWebTypesModule());
             var container = builder.Build();
 
