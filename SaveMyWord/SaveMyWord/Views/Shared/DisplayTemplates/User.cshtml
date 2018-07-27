@@ -1,0 +1,6 @@
+﻿@model SaveMyWord.Models.User
+
+@if (Model != null)
+{
+    @(!string.IsNullOrWhiteSpace(Model.Email) ? Model.Email : Model.UserName)
+}

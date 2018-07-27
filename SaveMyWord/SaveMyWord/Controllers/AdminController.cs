@@ -1,0 +1,66 @@
+﻿using Microsoft.AspNet.Identity;
+using SaveMyWord.Models;
+using SaveMyWord.Models.Filters;
+using SaveMyWord.Models.Repositories;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace SaveMyWord.Controllers
+{
+    //[Authorize(Users = "Admin")]
+    public class AdminController : BaseController
+    {
+        public AdminController(UserRepository userRepository) :
+            base(userRepository)
+        {
+            this.userRepository = userRepository;
+        }
+
+        public ActionResult Index(UserFilter userFilter, FetchOptions options)
+        {
+            var users = userRepository.Find(userFilter, options);
+            return View(users);
+        }
+        
+        public ActionResult Delete(long Id)
+        {
+            var user = userRepository.Load(Id);
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(User user)
+        {
+            userRepository.Delete(user);
+            return RedirectToBackUrl();
+        }
+
+
+        public ActionResult Edit(long id)
+        {
+            var user = userRepository.Load(id);
+            return View(new UserViewModel { Entity = user });
+        }
+
+        [HttpPost]
+        public ActionResult Edit(UserViewModel model)
+        {
+            userRepository.InvokeInTransaction(() => {
+                var user = userRepository.Load(model.Entity.Id);
+                user.UserName = model.Entity.UserName;
+                user.Email = model.Entity.Email;
+                userRepository.Save(user);
+            });
+            return RedirectToBackUrl();
+        }
+
+        public ActionResult Info(long id)
+        {
+            var user = userRepository.Load(id);
+            return View(new UserViewModel { Entity = user });
+        }
+    }
+}

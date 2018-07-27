@@ -1,0 +1,45 @@
+﻿@using SaveMyWord.Extensions
+@using SaveMyWord.Models.Filters
+@model IEnumerable<SaveMyWord.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Список пользователей</h2>
+
+<div>
+    @Html.Partial("_Filter", new UserFilter())
+</div>
+
+<p>
+    @Html.ActionLink("Добавить пользователя", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.SortLink("Логин", "UserName", "Index", "Admin", null)
+        </th>
+        <th>
+            @Html.SortLink("Email", "Email", "Index", "Admin", null)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Изменить", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
