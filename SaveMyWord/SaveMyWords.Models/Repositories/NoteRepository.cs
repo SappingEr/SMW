@@ -1,6 +1,7 @@
-﻿using NHibernate;
-using NHibernate.Criterion;
+﻿using System.Collections.Generic;
 using SaveMyWord.Models.Filters;
+using NHibernate;
+using NHibernate.Criterion;
 
 namespace SaveMyWord.Models.Repositories
 {
@@ -38,10 +39,17 @@ namespace SaveMyWord.Models.Repositories
                     {
                         crit.Add(Restrictions.Le("CreationDate", filter.Date.To.Value));
                     }
-                }
+                }               
             }
         }
 
+        public IList<Note> Find(NoteFilter filter, FetchOptions options = null)
+        {
+            var crit = session.CreateCriteria<Note>();
+            SetupFilter(filter, crit);
+            SetupFetchOptions(crit, options);
+            return crit.List<Note>();
+        }
 
 
 

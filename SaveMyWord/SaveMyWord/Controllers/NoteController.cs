@@ -1,9 +1,9 @@
-﻿using System;
+﻿
+
 using SaveMyWord.Models;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using SaveMyWord.Models.Filters;
 using SaveMyWord.Models.Repositories;
+using System.Web.Mvc;
 
 namespace SaveMyWord.Controllers
 {
@@ -27,10 +27,10 @@ namespace SaveMyWord.Controllers
 
 
 
-        public ActionResult Index()
+        public ActionResult Index(NoteFilter noteFilter, FetchOptions options)
         {
-            var note = noteRepository.FindAll();
-            return View(note);
+            var notes = noteRepository.Find(noteFilter, options);
+            return View(notes);
         }
 
         public ActionResult Create()
@@ -40,16 +40,26 @@ namespace SaveMyWord.Controllers
 
         [ValidateInput(false)]
         [HttpPost]
-        public ActionResult Create(Note model)
+        public ActionResult Create(NoteViewModel model)
         {
-
-            noteRepository.Save(model);
-
+            noteRepository.InvokeInTransaction(() => {
+                noteRepository.Save(model.Entity);               
+            });
             return RedirectToBackUrl();
-
         }
 
+        public ActionResult Delete()
+        {            
+            return View();
+        }
 
+        [HttpPost]
+        public ActionResult Delete(long id, Note note)
+        {
+            note = noteRepository.Load(id);
+            noteRepository.Delete(note);
+            return RedirectToBackUrl();
+        }
 
 
 

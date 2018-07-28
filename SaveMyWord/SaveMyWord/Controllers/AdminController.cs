@@ -2,10 +2,6 @@
 using SaveMyWord.Models;
 using SaveMyWord.Models.Filters;
 using SaveMyWord.Models.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SaveMyWord.Controllers

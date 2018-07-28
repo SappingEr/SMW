@@ -1,45 +1,53 @@
-﻿@model IEnumerable<SaveMyWord.Models.Note>
+﻿@using SaveMyWord.Extensions
+@using SaveMyWord.Models.Filters
+@model IEnumerable<SaveMyWord.Models.Note>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Заметки</h2>
+
+<div>
+    @Html.Partial("_NoteFilter", new NoteFilter())
+</div>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Новая заметка", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.NoteName)
+            @Html.SortLink("Название заметки", "NoteName", "Index", "Note", null)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Text)
+            @Html.SortLink("Автор", "CreationAuthor", "Index", "Note", null)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreationDate)
+            @Html.SortLink("Дата создания", "CreationDate", "Index", "Note", null)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.NoteName)
         </td>
+
         <td>
-            @Html.DisplayFor(modelItem => item.Text)
+            @Html.DisplayFor(modelItem => item.CreationAuthor)
         </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.CreationDate)
         </td>
+
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Удалить заметку", "Delete", new { d = item.Id })
         </td>
     </tr>
-}
+    }
 
 </table>

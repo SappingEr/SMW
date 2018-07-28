@@ -12,12 +12,10 @@ namespace SaveMyWord.Models
     {
         public virtual long Id { get; set; }
 
-        [Display(Name = "Название")]
         [InFastSearch]
         public virtual string NoteName { get; set; }
 
-        [Display(Name = "Текст")]
-        [InFastSearch]
+
         public virtual string Text { get; set; }
 
         [Display(Name = "Дата создания")]
@@ -28,9 +26,6 @@ namespace SaveMyWord.Models
         [InFastSearch]
         [CreationAuthor]
         public virtual User CreationAuthor { get; set; }
-
-
-
 
     }
 }
