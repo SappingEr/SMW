@@ -27,18 +27,12 @@
             </dd>
 
         </dl>
-    </div>
+    </div>    
+</div>
 
-    <div>
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
 
-            <div>
-                <input type="submit" value="Удалить" class="btn btn-danger" /> |
-                <input type="button" value="Отмена" class="btn btn-primary" onclick='window.location = "@Url.Action("Index","Admin") ";' />
-            </div>
-        }
-    </div>
+<div>
+    <input type="submit" value="Удалить" class="btn btn-danger" /> |
+    <input type="button" value="Отмена" class="btn btn-primary" onclick='window.location = "@Url.Action("Index","Admin")"' />
 </div>

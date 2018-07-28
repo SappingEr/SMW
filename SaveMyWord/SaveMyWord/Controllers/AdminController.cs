@@ -21,17 +21,9 @@ namespace SaveMyWord.Controllers
             return View(users);
         }
 
-
-        
-        public ActionResult Delete(long Id)
+        public ActionResult Delete(long id)
         {
-            var user = userRepository.Load(Id);
-            return View(user);
-        }
-
-        [HttpPost]
-        public ActionResult Delete(User user)
-        {
+            var user = userRepository.Load(id);
             userRepository.Delete(user);
             return RedirectToBackUrl();
         }
@@ -69,16 +61,12 @@ namespace SaveMyWord.Controllers
                 var res = UserManager.CreateAsync(model.Entity, model.Password);
                 if (res.Result == IdentityResult.Success)
                 {
-                    return RedirectToAction("Login");
+                    return RedirectToBackUrl();
                 }
             }
-            return RedirectToAction("Login");
+            return RedirectToBackUrl();
         }
 
-        public ActionResult Info(long id)
-        {
-            var user = userRepository.Load(id);
-            return View(new UserViewModel { Entity = user });
-        }
+        
     }
 }

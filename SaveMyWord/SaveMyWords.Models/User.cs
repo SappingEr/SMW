@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using System.ComponentModel.DataAnnotations;
 using SaveMyWord.Models.Listeners;
 using System;
+using System.Collections.Generic;
 
 namespace SaveMyWord.Models
 {
@@ -10,7 +11,7 @@ namespace SaveMyWord.Models
     {
         public virtual long Id { get; set; }
 
-        [Display(Name = "Имя")]
+        [Display(Name = "Логин")]
         [Required]
         [InFastSearch]
         public virtual string UserName { get; set; }
@@ -21,6 +22,8 @@ namespace SaveMyWord.Models
         [InFastSearch]
         [EmailAddress]
         public virtual string Email { get; set; }
+
+        public virtual ICollection<Note> Notes { get; set; }
 
         [Display(Name = "Дата авторизации")]
         [CreationDate]

@@ -31,23 +31,26 @@
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NoteName)
-        </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoteName)
+            </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.CreationAuthor)
-        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationAuthor)
+            </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.CreationDate)
-        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
 
-        <td>
-            @Html.ActionLink("Удалить заметку", "Delete", new { d = item.Id })
-        </td>
-    </tr>
+            <td>
+                @Html.ActionLink("Удалить заметку", "Delete", new { id = item.Id })
+                @Html.ActionLink("Ed", "Edit", new { id = item.Id })
+            </td>
+        </tr>
     }
 
 </table>
+
+

@@ -222,9 +222,12 @@
     <Compile Include="UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SMW_Base.mdf" />
+    <Content Include="App_Data\SMW_Base.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="App_Data\SMW_Base_log.ldf">
       <DependentUpon>SMW_Base.mdf</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -438,7 +441,7 @@
     <Content Include="Views\Note\Index.cshtml" />
     <Content Include="Views\Note\_NoteFilter.cshtml" />
     <Content Include="Views\Note\Create.cshtml" />
-    <Content Include="Views\Note\Delete.cshtml" />
+    <Content Include="Views\Note\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="fonts\font\" />

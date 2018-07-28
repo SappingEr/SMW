@@ -12,10 +12,11 @@ namespace SaveMyWord.Models
     {
         public virtual long Id { get; set; }
 
+        [Display(Name = "Дата создания")]
         [InFastSearch]
         public virtual string NoteName { get; set; }
 
-
+        
         public virtual string Text { get; set; }
 
         [Display(Name = "Дата создания")]

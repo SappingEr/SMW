@@ -24,9 +24,6 @@ namespace SaveMyWord.Controllers
             return View();
         }
 
-
-
-
         public ActionResult Index(NoteFilter noteFilter, FetchOptions options)
         {
             var notes = noteRepository.Find(noteFilter, options);
@@ -40,27 +37,42 @@ namespace SaveMyWord.Controllers
 
         [ValidateInput(false)]
         [HttpPost]
-        public ActionResult Create(NoteViewModel model)
+        public ActionResult Create(Note note)
         {
-            noteRepository.InvokeInTransaction(() => {
-                noteRepository.Save(model.Entity);               
+            noteRepository.InvokeInTransaction(() =>
+            {
+                noteRepository.Save(note);
             });
             return RedirectToBackUrl();
         }
 
-        public ActionResult Delete()
-        {            
-            return View();
+        public ActionResult Delete(long id)
+        {
+            var note = noteRepository.Load(id);
+            noteRepository.Delete(note);
+            return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public ActionResult Delete(long id, Note note)
+
+        public ActionResult Edit(long id)
         {
-            note = noteRepository.Load(id);
-            noteRepository.Delete(note);
+            var note = noteRepository.Load(id);
+            return View(note);
+        }
+
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult Edit(long id, Note model)
+        {
+
+            var note = noteRepository.Load(model.Id);
+
+            note.NoteName = model.NoteName;
+            note.Text = model.Text;
+            noteRepository.Save(note);
+
             return RedirectToBackUrl();
         }
-
 
 
 

@@ -12,7 +12,8 @@ namespace SaveMyWord.Models
             Map(u => u.Password);
             Map(u => u.Email);
             Map(u => u.CreationDate);
-            
+            HasMany(u => u.Notes).KeyColumn("User_id");
+
 
         }
     }
