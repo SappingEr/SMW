@@ -93,6 +93,8 @@
     <Compile Include="Autofac\AutofacLocatorImpl.cs" />
     <Compile Include="Autofac\ILocatorImpl.cs" />
     <Compile Include="Autofac\Locator.cs" />
+    <Compile Include="Document.cs" />
+    <Compile Include="DocumentMap.cs" />
     <Compile Include="FetchOptions.cs" />
     <Compile Include="Filters\BaseFilter.cs" />
     <Compile Include="Filters\DateRange.cs" />

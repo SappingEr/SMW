@@ -76,7 +76,7 @@ namespace SaveMyWord.Controllers
         public ActionResult Info(long id)
         {
             var user = UserManager.FindById(id);
-            return View(new UserViewModel { Entity = user });
+            return View(user);
         }
     }
 }

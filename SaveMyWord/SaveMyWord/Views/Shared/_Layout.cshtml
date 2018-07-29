@@ -21,9 +21,11 @@
                 @Html.ActionLink("SaveMyWord", "Start", "Note", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">                    
+                <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Заметки", "Index", "Note")</li>
-                    
+                    <li>@Html.ActionLink("Новая заметка", "Index", "Note")</li>
+                    <li>@Html.ActionLink("Мои заметки", "Index", "Note")</li>
+
                 </ul>              
                 @Html.Partial("_LoginPartial")
             </div>

@@ -2,5 +2,5 @@
 
 @if (Model != null)
 {
-    @(!string.IsNullOrWhiteSpace(Model.Email) ? Model.Email : Model.UserName)
+    @(!string.IsNullOrWhiteSpace(Model.UserName) ? Model.UserName : Model.Email)
 }

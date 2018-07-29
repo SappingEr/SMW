@@ -15,19 +15,16 @@ namespace SaveMyWord.Models
         [Required]
         [InFastSearch]
         public virtual string UserName { get; set; }
-
         
         public virtual string Password { get; set; }
 
         [InFastSearch]
         [EmailAddress]
         public virtual string Email { get; set; }
-
-        public virtual ICollection<Note> Notes { get; set; }
-
-        [Display(Name = "Дата авторизации")]
+        
+        [Display(Name = "Дата регистрации")]
         [CreationDate]
-        public virtual DateTime? CreationDate { get; set; }        
-
+        public virtual DateTime? CreationDate { get; set; }
+        
     }
 }

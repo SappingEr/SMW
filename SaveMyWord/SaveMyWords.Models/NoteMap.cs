@@ -13,9 +13,10 @@ namespace SaveMyWord.Models
         {
             Id(n => n.Id).GeneratedBy.Identity();
             Map(n => n.NoteName).Length(50);
-            Map(n => n.Text).CustomSqlType("CLOB");
+            Map(n => n.Text).Length(int.MaxValue); 
             Map(n => n.CreationDate);
-            References(n => n.CreationAuthor).Column("User_id");
+            References(n => n.CreationAuthor);
+            HasMany(n => n.Documents);
         }
         
 

@@ -24,7 +24,7 @@ namespace SaveMyWord.Controllers
             return View();
         }
 
-        public ActionResult Index(NoteFilter noteFilter, FetchOptions options)
+        public ActionResult Index(NoteFilter noteFilter, UserFilter userFilter, FetchOptions options)
         {
             var notes = noteRepository.Find(noteFilter, options);
             return View(notes);
@@ -39,10 +39,7 @@ namespace SaveMyWord.Controllers
         [HttpPost]
         public ActionResult Create(Note note)
         {
-            noteRepository.InvokeInTransaction(() =>
-            {
-                noteRepository.Save(note);
-            });
+            noteRepository.Save(note);
             return RedirectToBackUrl();
         }
 
@@ -64,16 +61,12 @@ namespace SaveMyWord.Controllers
         [HttpPost]
         public ActionResult Edit(long id, Note model)
         {
-
             var note = noteRepository.Load(model.Id);
-
             note.NoteName = model.NoteName;
             note.Text = model.Text;
             noteRepository.Save(note);
-
             return RedirectToBackUrl();
         }
-
 
 
 
