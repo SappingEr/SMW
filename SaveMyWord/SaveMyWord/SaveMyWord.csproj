@@ -439,6 +439,8 @@
     <Content Include="Views\Note - Copy\Create.cshtml" />
     <Content Include="Views\Note\Edit.cshtml" />
     <Content Include="Views\Note\Create.cshtml" />
+    <Content Include="Views\Note\UserIndex.cshtml" />
+    <Content Include="Views\Note\Info.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Upload\" />

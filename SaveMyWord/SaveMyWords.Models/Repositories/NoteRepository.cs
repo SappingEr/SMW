@@ -51,9 +51,9 @@ namespace SaveMyWord.Models.Repositories
             return crit.List<Note>();
         }
 
-        public IList<Note> NotesByUser(User user, FetchOptions options = null)
+        public IList<Note> NoteByUser(User user, FetchOptions options = null)
         {
-            var crit = session.CreateCriteria<Note>().Add(Restrictions.Eq("CreationAuthor", user));
+            var crit = session.CreateCriteria<Note>().Add(Restrictions.Eq("user.Id", user));
             return crit.List<Note>();
         }
 

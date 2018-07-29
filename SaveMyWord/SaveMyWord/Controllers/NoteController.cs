@@ -92,12 +92,19 @@ namespace SaveMyWord.Controllers
             return RedirectToBackUrl();
         }
 
-        //public ActionResult MyNotes()
-        //{
-        //    var user = userRepository.GetCurrentUser(User);
-        //    var notes = noteRepository.NotesByUser(user, options)
-        //}
+        public ActionResult UserIndex(FetchOptions options)
+        {
+            var user = userRepository.GetCurrentUser(User);
+            var notes = noteRepository.NoteByUser(user, options);
+           
+            return View(notes);
+        }
 
+        public ActionResult Info(long id)
+        {
+            var note = noteRepository.Load(id);
+            return View(note);
+        }
 
 
 
