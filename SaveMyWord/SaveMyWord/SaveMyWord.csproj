@@ -432,15 +432,16 @@
     <Content Include="Views\Account\Info.cshtml" />
     <Content Include="Views\Account\Create.cshtml" />
     <Content Include="Views\Admin\Create.cshtml" />
-    <Content Include="Views\Note - Copy\Create.cshtml" />
     <Content Include="Views\Note - Copy\Index.cshtml" />
     <Content Include="Views\Note\Start.cshtml" />
     <Content Include="Views\Note\Index.cshtml" />
     <Content Include="Views\Note\_NoteFilter.cshtml" />
-    <Content Include="Views\Note\Create.cshtml" />
+    <Content Include="Views\Note - Copy\Create.cshtml" />
     <Content Include="Views\Note\Edit.cshtml" />
+    <Content Include="Views\Note\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\Upload\" />
     <Folder Include="fonts\font\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Shared\EditorTemplates\" />

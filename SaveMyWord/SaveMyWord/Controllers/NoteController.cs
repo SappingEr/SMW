@@ -1,8 +1,9 @@
-﻿
-
-using SaveMyWord.Models;
+﻿using SaveMyWord.Models;
 using SaveMyWord.Models.Filters;
 using SaveMyWord.Models.Repositories;
+
+using System.Collections.Generic;
+using System.IO;
 using System.Web.Mvc;
 
 namespace SaveMyWord.Controllers
@@ -39,8 +40,31 @@ namespace SaveMyWord.Controllers
         [HttpPost]
         public ActionResult Create(Note note)
         {
-            noteRepository.Save(note);
-            return RedirectToBackUrl();
+            if (ModelState.IsValid)
+            {
+                List<Document> documents = new List<Document>();
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    var file = Request.Files[i];
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        Document document = new Document()
+                        {
+                            Name = fileName,
+                            Path = Path.GetExtension(fileName)                            
+                        };
+                        documents.Add(document);
+
+                        var path = Path.Combine(Server.MapPath("~/Content/Upload/"), document.Id + document.Path);
+                        file.SaveAs(path);
+                    }
+                }
+                note.Documents = documents;
+                noteRepository.Save(note);
+                return RedirectToBackUrl();
+            }
+            return View(note);
         }
 
         public ActionResult Delete(long id)
@@ -67,6 +91,12 @@ namespace SaveMyWord.Controllers
             noteRepository.Save(note);
             return RedirectToBackUrl();
         }
+
+        //public ActionResult MyNotes()
+        //{
+        //    var user = userRepository.GetCurrentUser(User);
+        //    var notes = noteRepository.NotesByUser(user, options)
+        //}
 
 
 
